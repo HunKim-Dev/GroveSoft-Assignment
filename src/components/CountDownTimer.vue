@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
+import { TIMER } from "@/config/UIConstants";
 
 const leftTime = ref<number>(6000);
 let timerId: number | null = null;
@@ -27,8 +28,8 @@ onUnmounted(() => {
   <div class="flex justify-end items-center min-h-screen pr-24">
     <div class="flex flex-col items-end gap-10">
       <div class="flex flex-col items-end gap-2">
-        <p class="font-bold text-3xl">이벤트 종료까지 남은 시간</p>
-        <p class="text-gray-800 text-sm">이벤트 참여하시면 혜택을 받으실 수 있습니다.</p>
+        <p class="font-bold text-3xl">{{ TIMER.TITLE }}</p>
+        <p class="text-gray-800 text-sm">{{ TIMER.DESCRIPTION }}</p>
       </div>
 
       <p class="font-bold font-mono text-6xl">
