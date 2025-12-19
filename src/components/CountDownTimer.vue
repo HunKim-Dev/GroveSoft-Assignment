@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { TIMER } from "@/config/UIConstants";
 
-const leftTime = ref<number>(6000);
+const leftTime = ref<number>(86400);
 let timerId: number | null = null;
 
 const pad = (num: number): string => String(num).padStart(2, "0");
@@ -25,14 +25,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex justify-end items-center min-h-screen pr-24">
+  <div class="flex justify-end items-center min-h-screen">
     <div class="flex flex-col items-end gap-10">
       <div class="flex flex-col items-end gap-2">
+        <p>{{ TIMER.DESCRIPTION }}</p>
         <p class="font-bold text-3xl">{{ TIMER.TITLE }}</p>
-        <p class="text-gray-800 text-sm">{{ TIMER.DESCRIPTION }}</p>
       </div>
 
-      <p class="font-bold font-mono text-6xl">
+      <p class="font-bold font-mono text-6xl text-[#007AFF]">
         {{ pad(Math.floor(leftTime / 3600)) }} : {{ pad(Math.floor((leftTime % 3600) / 60)) }} :
         {{ pad(leftTime % 60) }}
       </p>

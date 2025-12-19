@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import CountDownTimer from './components/CountDownTimer.vue';
+import CountDownTimer from "./components/CountDownTimer.vue";
+import EventHeaderInfo from "./components/EventHeaderInfo.vue";
+import EventRewardInfo from "./components/EventRewardInfo.vue";
 </script>
 
 <template>
   <header>
-    <div>
-      <h1>신규 서비스 오픈 기념 이벤트</h1>
-    </div>
-    <div>
-      <p>응모하고 특별 혜택을 받아가세요.</p>
-    </div>
+    <EventHeaderInfo />
   </header>
 
-  <main>
-    <CountDownTimer />
+  <main class="flex items-start gap-10">
+    <div class="flex-1">
+      <EventRewardInfo />
+    </div>
+
+    <div class="w-full max-w-md -mt-10">
+      <CountDownTimer />
+    </div>
   </main>
 </template>
