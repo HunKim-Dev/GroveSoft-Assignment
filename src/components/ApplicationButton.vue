@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ApplicationFrom from "./ApplicationFrom.vue";
+import { APPLY } from "@/config/UIConstants";
 
 const openApplicationFrom = ref(false);
 </script>
@@ -11,7 +12,7 @@ const openApplicationFrom = ref(false);
       @click="openApplicationFrom = true"
       class="px-30 py-5 cursor-pointer text-2xl font-bold rounded-full border bg-[#007AFF] text-white transition hover:bg-[#004085] active:scale-90"
     >
-      응모하기
+      {{ APPLY.BUTTON }}
     </button>
   </div>
   <ApplicationFrom v-if="openApplicationFrom" @close="openApplicationFrom = false" />
