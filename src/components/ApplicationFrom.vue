@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { onMounted, onUnmounted } from "vue";
+import { APPLY } from "@/config/UIConstants";
 
 const inputNameText = ref("");
 const inputPhoneNumberText = ref("");
@@ -31,11 +32,11 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
         ✕
       </button>
 
-      <h3 class="text-xl font-semibold mb-6">그로브 뷰티 오픈 기념 응모</h3>
+      <h3 class="text-xl font-semibold mb-6">{{ APPLY.FORM_TITLE }}</h3>
 
       <div class="space-y-5">
         <div class="space-y-2">
-          <p class="text-sm font-medium">이름</p>
+          <p class="text-sm font-medium">{{ APPLY.FORM_NAME }}</p>
           <input
             v-model.trim="inputNameText"
             type="text"
@@ -45,7 +46,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
         </div>
 
         <div class="space-y-2">
-          <p class="text-sm font-medium">연락처</p>
+          <p class="text-sm font-medium">{{ APPLY.FORM_PHONE_NUMBER }}</p>
           <input
             v-model.trim="inputPhoneNumberText"
             type="text"
@@ -55,7 +56,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
         </div>
 
         <div class="space-y-2">
-          <p class="text-sm font-medium">이메일</p>
+          <p class="text-sm font-medium">{{ APPLY.FORM_EMAIL }}</p>
           <input
             v-model.trim="inputEmailText"
             type="text"
@@ -72,7 +73,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
             class="h-4 w-4 rounded border-black focus:ring-[#007AFF] cursor-pointer"
           />
           <label for="checkbox" class="text-sm text-gray cursor-pointer">
-            약관에 동의 하시나요?
+            {{ APPLY.FORM_AGREE_LABEL }}
           </label>
         </div>
 
@@ -80,12 +81,12 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
           <button
             class="flex-1 cursor-pointer rounded-md bg-[#007AFF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0066d6] active:scale-90"
           >
-            응모하기
+            {{ APPLY.BUTTON }}
           </button>
           <button
             class="flex-1 cursor-pointer rounded-md border border-gray bg-white px-4 py-2 text-sm font-semibold text-gray transition hover:bg-gray-100 active:scale-90"
           >
-            공유하기
+            {{ APPLY.SHARE_BUTTON }}
           </button>
         </div>
       </div>

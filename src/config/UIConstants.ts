@@ -28,3 +28,13 @@ export const CARD_DRAW = {
   TITLE: "카드를 뽑아서 할인 쿠폰을 더 받아 가세요!",
   MIX_BUTTON: "카드 섞기",
 };
+
+export const APPLY = {
+  BUTTON: "응모하기",
+  SHARE_BUTTON: "공유하기",
+  FORM_TITLE: "그로브 뷰티 오픈 기념 응모",
+  FORM_NAME: "이름",
+  FORM_PHONE_NUMBER: "연락처",
+  FORM_EMAIL: "이메일",
+  FORM_AGREE_LABEL: "약관에 동의 하시나요?",
+};
