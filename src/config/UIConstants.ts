@@ -23,3 +23,8 @@ export const EVENT_BENEFITS_LIST = [
   "🎁 추첨을 통한 커피 기프티콘 증정",
   "🎁 친구에게 공유하면 추가 응모 1회 제공",
 ];
+
+export const CARD_DRAW = {
+  TITLE: "카드를 뽑아서 할인 쿠폰을 더 받아 가세요!",
+  MIX_BUTTON: "카드 섞기",
+};

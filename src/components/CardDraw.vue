@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { CARD_DRAW } from "@/config/UIConstants";
 
-type Card = { id: number; fornt: string; drawn: boolean };
+type Card = { id: number; front: string; drawn: boolean };
 
 const CARDS = ref<Card[]>([
-  { id: 1, fornt: "10%", drawn: false },
-  { id: 2, fornt: "10%", drawn: false },
-  { id: 3, fornt: "10%", drawn: false },
-  { id: 4, fornt: "10%", drawn: false },
-  { id: 5, fornt: "10%", drawn: false },
+  { id: 1, front: "10%", drawn: false },
+  { id: 2, front: "10%", drawn: false },
+  { id: 3, front: "10%", drawn: false },
+  { id: 4, front: "10%", drawn: false },
+  { id: 5, front: "10%", drawn: false },
 ]);
 
 const shuffleCard = () => {
@@ -41,7 +42,7 @@ const flipCard = (id: number) => {
 <template>
   <div>
     <div class="mb-4">
-      <p class="text-2xl">카드를 뽑아서 할인 쿠폰을 더 받아 가세요!</p>
+      <p class="text-2xl">{{ CARD_DRAW.TITLE }}</p>
     </div>
   </div>
 
@@ -55,7 +56,7 @@ const flipCard = (id: number) => {
     >
       <div class="card__inner">
         <div class="card__face card__back">?</div>
-        <div class="card__face card__front">{{ card.fornt }}</div>
+        <div class="card__face card__front">{{ card.front }}</div>
       </div>
     </div>
   </transition-group>
@@ -65,7 +66,7 @@ const flipCard = (id: number) => {
       @click="shuffleCard"
       class="px-5 py-3 cursor-pointer text-sm font-semibold rounded-md border bg-[#007AFF] text-white transition hover:bg-[#004085]"
     >
-      카드 섞기
+      {{ CARD_DRAW.MIX_BUTTON }}
     </button>
   </div>
 </template>
