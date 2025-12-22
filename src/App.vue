@@ -2,6 +2,7 @@
 import CountDownTimer from "./components/CountDownTimer.vue";
 import EventHeaderInfo from "./components/EventHeaderInfo.vue";
 import EventRewardInfo from "./components/EventRewardInfo.vue";
+import CardDraw from "./components/CardDraw.vue";
 </script>
 
 <template>
@@ -14,8 +15,14 @@ import EventRewardInfo from "./components/EventRewardInfo.vue";
       <EventRewardInfo />
     </div>
 
-    <div class="w-full max-w-md -mt-10">
-      <CountDownTimer />
+    <div class="w-full max-w-md flex flex-col items-end gap-10">
+      <div class="-mt-30">
+        <CardDraw />
+      </div>
+
+      <div>
+        <CountDownTimer />
+      </div>
     </div>
   </main>
 </template>

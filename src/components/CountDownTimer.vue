@@ -25,8 +25,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex justify-end items-center min-h-screen">
-    <div class="flex flex-col items-end gap-10">
+  <div class="flex justify-end mt-30">
+    <div class="flex flex-col items-end gap-6">
       <div class="flex flex-col items-end gap-2">
         <p>{{ TIMER.DESCRIPTION }}</p>
         <p class="font-bold text-3xl">{{ TIMER.TITLE }}</p>

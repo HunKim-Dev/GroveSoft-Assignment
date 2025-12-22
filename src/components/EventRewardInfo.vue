@@ -20,7 +20,6 @@ import { EVENT_INFO, EVENT_BENEFITS_LIST } from "@/config/UIConstants";
 <style scoped>
 .benefit-hover {
   padding-inline: 0.5rem;
-  border-radius: 0.5rem;
   cursor: pointer;
   transition: 300ms;
 }
