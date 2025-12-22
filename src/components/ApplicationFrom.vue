@@ -26,7 +26,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
       <button
         @click="$emit('close')"
         aria-label="창 닫기"
-        class="absolute right-4 top-4 text-gray-400 transition hover:text-gray-700"
+        class="absolute right-4 top-4 text-gray-400 transition hover:text-gray-700 active:scale-90"
       >
         ✕
       </button>
@@ -78,12 +78,12 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
 
         <div class="flex gap-3 pt-2">
           <button
-            class="flex-1 cursor-pointer rounded-md bg-[#007AFF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0066d6]"
+            class="flex-1 cursor-pointer rounded-md bg-[#007AFF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0066d6] active:scale-90"
           >
             응모하기
           </button>
           <button
-            class="flex-1 cursor-pointer rounded-md border border-gray bg-white px-4 py-2 text-sm font-semibold text-gray transition hover:bg-gray-100"
+            class="flex-1 cursor-pointer rounded-md border border-gray bg-white px-4 py-2 text-sm font-semibold text-gray transition hover:bg-gray-100 active:scale-90"
           >
             공유하기
           </button>
