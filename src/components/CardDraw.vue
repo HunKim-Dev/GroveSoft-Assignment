@@ -64,7 +64,7 @@ const flipCard = (id: number) => {
   <div class="flex justify-center mt-6">
     <button
       @click="shuffleCard"
-      class="px-5 py-3 cursor-pointer text-sm font-semibold rounded-md border bg-[#007AFF] text-white transition hover:bg-[#004085]"
+      class="px-5 py-3 cursor-pointer text-sm font-semibold rounded-md border bg-[#007AFF] text-white transition hover:bg-[#004085] active:scale-90"
     >
       {{ CARD_DRAW.MIX_BUTTON }}
     </button>
