@@ -23,4 +23,5 @@ export const APPLY = {
   FORM_EMAIL: "이메일",
   FORM_AGREE_LABEL: "약관에 동의 하시나요?",
   APPLYING: "응모 중...",
+  APPLIED: "이미 응모하셨습니다",
 };

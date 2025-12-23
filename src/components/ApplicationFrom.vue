@@ -142,7 +142,7 @@ const copyUrl = async () => {
             :disabled="isLoading || hasApplied"
             class="flex-1 cursor-pointer rounded-md px-4 py-2 text-sm font-semibold text-white transition active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed bg-[#007AFF] hover:bg-[#0066d6]"
           >
-            {{ hasApplied ? "이미 응모하셨습니다" : isLoading ? APPLY.APPLYING : APPLY.BUTTON }}
+            {{ hasApplied ? APPLY.APPLIED : isLoading ? APPLY.APPLYING : APPLY.BUTTON }}
           </button>
 
           <button
