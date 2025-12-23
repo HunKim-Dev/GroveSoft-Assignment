@@ -4,9 +4,11 @@ import EventHeaderInfo from "./components/EventHeaderInfo.vue";
 import EventRewardInfo from "./components/EventRewardInfo.vue";
 import CardDraw from "./components/CardDraw.vue";
 import ApplicationButton from "./components/ApplicationButton.vue";
+import BackGroundParallax from "./components/BackGroundParallax.vue";
 </script>
 
 <template>
+  <BackGroundParallax />
   <header>
     <Transition
       appear
