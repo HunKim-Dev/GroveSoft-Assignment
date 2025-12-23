@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { EVENT_INFO } from "@/config/UIConstants";
-import { API_MESSAGES } from "@/config/apiMessages";
+import { API_MESSAGES } from "@/config/messages";
 
 const props = defineProps<{
   rewards: { id: number; name: string; image: string }[];

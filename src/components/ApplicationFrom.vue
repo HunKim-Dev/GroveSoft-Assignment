@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { APPLY } from "@/config/UIConstants";
-import { API_MESSAGES } from "@/config/apiMessages";
+import { API_MESSAGES, URL_COPY_MESSAGES } from "@/config/messages";
 import { applicationForm } from "@/lib/validators/applicationForm";
 
 const inputNameText = ref("");
@@ -54,6 +54,18 @@ const submitForm = async () => {
     console.error({ message: error });
   } finally {
     isLoading.value = false;
+  }
+};
+
+const copyUrl = async () => {
+  try {
+    const currentUrl = window.location.href;
+    await navigator.clipboard.writeText(currentUrl);
+
+    alert(URL_COPY_MESSAGES.SUCCESS);
+  } catch (error) {
+    alert(URL_COPY_MESSAGES.FAIL);
+    console.error({ message: error });
   }
 };
 </script>
@@ -125,6 +137,7 @@ const submitForm = async () => {
             {{ isLoading ? APPLY.APPLYING : APPLY.BUTTON }}
           </button>
           <button
+            @click="copyUrl"
             class="flex-1 cursor-pointer rounded-md border border-gray bg-white px-4 py-2 text-sm font-semibold text-gray transition hover:bg-gray-100 active:scale-90"
           >
             {{ APPLY.SHARE_BUTTON }}
