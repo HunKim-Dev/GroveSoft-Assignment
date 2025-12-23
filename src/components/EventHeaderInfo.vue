@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { EVENT_INFO, DAY_MINUTES } from "@/config/UIConstants";
+const props = defineProps<{
+  title: string;
+  endDate: string;
+  description: string;
+}>();
+
+if (!props) alert("제목, 상세설명, 날짜가 조회되지 않습니다.");
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString("ko-KR", {
@@ -8,24 +14,24 @@ const formatDate = (date: Date) =>
     day: "2-digit",
   });
 
-const formatHourMinute = (date: Date) =>
+const formatLimitDate = (date: Date) =>
   date.toLocaleTimeString("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
   });
 
-const addMinutes = (date: Date, minutes: number) => new Date(date.getTime() + minutes * 60 * 1000);
-
 const today = new Date();
-const limit = addMinutes(today, DAY_MINUTES);
 
 const currentDate = `${formatDate(today)}`;
-const limitDate = `${formatDate(limit)} ${formatHourMinute(limit)}`;
+const limitDate = formatLimitDate(new Date(props.endDate));
 </script>
 
 <template>
   <div class="mt-20 mb-2">
-    <h1 class="text-4xl font-black">{{ EVENT_INFO.HEADER.TITLE }}</h1>
+    <h1 class="text-4xl font-black">{{ title }}</h1>
   </div>
 
   <div class="mb-2">
@@ -33,6 +39,6 @@ const limitDate = `${formatDate(limit)} ${formatHourMinute(limit)}`;
   </div>
 
   <div class="mb-15">
-    <p>{{ EVENT_INFO.HEADER.DESCRIPTION }}</p>
+    <p>{{ description }}</p>
   </div>
 </template>
