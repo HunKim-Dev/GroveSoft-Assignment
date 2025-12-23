@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { EVENT_INFO, EVENT_BENEFITS_LIST } from "@/config/UIConstants";
+import { EVENT_INFO } from "@/config/UIConstants";
+import { API_MESSAGES } from "@/config/apiMessages";
+
+const props = defineProps<{
+  rewards: { id: number; name: string; image: string }[];
+}>();
+
+if (!props) alert(API_MESSAGES.FAIL.REWARD_INFO);
 </script>
 
 <template>
@@ -7,11 +14,12 @@ import { EVENT_INFO, EVENT_BENEFITS_LIST } from "@/config/UIConstants";
     <h2 class="text-2xl mb-2 font-semibold">{{ EVENT_INFO.REWARD.TITLE }}</h2>
     <ul class="flex flex-col items-start gap-2.5">
       <li
-        v-for="benefit in EVENT_BENEFITS_LIST"
-        :key="benefit"
+        v-for="reward in rewards"
+        :key="reward.id"
         class="benefit-hover hover:bg-black hover:text-white hover:font-medium hover:scale-[1.25]"
       >
-        {{ benefit }}
+        {{ reward.name }}
+        <img :src="reward.image" alt="보상 항목 이미지" class="w-6 h-6 object-contain" />
       </li>
     </ul>
   </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { APPLY } from "@/config/UIConstants";
+import { API_MESSAGES } from "@/config/apiMessages";
 import { applicationForm } from "@/lib/validators/applicationForm";
 
 const inputNameText = ref("");
@@ -20,7 +20,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
 
 const errorMessage = ref("");
 
-const submitForm = () => {
+const submitForm = async () => {
   const validateResult = applicationForm.safeParse({
     name: inputNameText.value,
     phone: inputPhoneNumberText.value,
@@ -33,6 +33,22 @@ const submitForm = () => {
 
     alert(errorMessage.value);
     return;
+  }
+
+  try {
+    const response = await fetch("https://694a57351282f890d2d85e1d.mockapi.io/entries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(validateResult.data),
+    });
+
+    if (!response) throw new Error(API_MESSAGES.FAIL.POST);
+
+    alert(API_MESSAGES.SUCCESS.POST);
+    closeModel("close");
+  } catch (error) {
+    alert(API_MESSAGES.FAIL.SERVER);
+    console.error({ message: error });
   }
 };
 </script>
