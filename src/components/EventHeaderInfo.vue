@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { API_MESSAGES } from "@/config/apiMessages";
+import { API_MESSAGES } from "@/config/messages";
 
 const props = defineProps<{
   title: string;

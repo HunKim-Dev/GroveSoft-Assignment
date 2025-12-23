@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { TIMER } from "@/config/UIConstants";
-import { API_MESSAGES } from "@/config/apiMessages";
+import { API_MESSAGES } from "@/config/messages";
 
 const props = defineProps<{
   endDate: string;

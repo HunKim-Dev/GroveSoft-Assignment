@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { APPLY } from "@/config/UIConstants";
-import { API_MESSAGES } from "@/config/apiMessages";
+import { API_MESSAGES, URL_COPY_MESSAGES } from "@/config/messages";
 import { applicationForm } from "@/lib/validators/applicationForm";
 
 const inputNameText = ref("");
@@ -62,9 +62,9 @@ const copyUrl = async () => {
     const currentUrl = window.location.href;
     await navigator.clipboard.writeText(currentUrl);
 
-    alert("링크가 복사되었습니다!");
+    alert(URL_COPY_MESSAGES.SUCCESS);
   } catch (error) {
-    alert("링크 복사에 실패했습니다.");
+    alert(URL_COPY_MESSAGES.FAIL);
     console.error({ message: error });
   }
 };
