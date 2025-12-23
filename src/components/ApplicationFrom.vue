@@ -56,6 +56,18 @@ const submitForm = async () => {
     isLoading.value = false;
   }
 };
+
+const copyUrl = async () => {
+  try {
+    const currentUrl = window.location.href;
+    await navigator.clipboard.writeText(currentUrl);
+
+    alert("링크가 복사되었습니다!");
+  } catch (error) {
+    alert("링크 복사에 실패했습니다.");
+    console.error({ message: error });
+  }
+};
 </script>
 
 <template>
@@ -125,6 +137,7 @@ const submitForm = async () => {
             {{ isLoading ? APPLY.APPLYING : APPLY.BUTTON }}
           </button>
           <button
+            @click="copyUrl"
             class="flex-1 cursor-pointer rounded-md border border-gray bg-white px-4 py-2 text-sm font-semibold text-gray transition hover:bg-gray-100 active:scale-90"
           >
             {{ APPLY.SHARE_BUTTON }}
