@@ -19,6 +19,7 @@ onMounted(() => window.addEventListener("keydown", onKeydown));
 onUnmounted(() => window.removeEventListener("keydown", onKeydown));
 
 const errorMessage = ref("");
+const isLoading = ref(false);
 
 const submitForm = async () => {
   const validateResult = applicationForm.safeParse({
@@ -36,6 +37,8 @@ const submitForm = async () => {
   }
 
   try {
+    isLoading.value = true;
+
     const response = await fetch("https://694a57351282f890d2d85e1d.mockapi.io/entries", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -49,6 +52,8 @@ const submitForm = async () => {
   } catch (error) {
     alert(API_MESSAGES.FAIL.SERVER);
     console.error({ message: error });
+  } finally {
+    isLoading.value = false;
   }
 };
 </script>
@@ -117,7 +122,7 @@ const submitForm = async () => {
             @click="submitForm"
             class="flex-1 cursor-pointer rounded-md bg-[#007AFF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0066d6] active:scale-90"
           >
-            {{ APPLY.BUTTON }}
+            {{ isLoading ? APPLY.APPLYING : APPLY.BUTTON }}
           </button>
           <button
             class="flex-1 cursor-pointer rounded-md border border-gray bg-white px-4 py-2 text-sm font-semibold text-gray transition hover:bg-gray-100 active:scale-90"

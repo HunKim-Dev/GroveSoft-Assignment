@@ -22,4 +22,5 @@ export const APPLY = {
   FORM_PHONE_NUMBER: "연락처",
   FORM_EMAIL: "이메일",
   FORM_AGREE_LABEL: "약관에 동의 하시나요?",
+  APPLYING: "응모 중...",
 };
