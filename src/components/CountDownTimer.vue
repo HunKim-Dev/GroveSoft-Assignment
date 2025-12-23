@@ -2,16 +2,29 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { TIMER } from "@/config/UIConstants";
 
-const leftTime = ref<number>(86400);
+const props = defineProps<{
+  endDate: string;
+}>();
+
+if (!props) alert("타이머가 조회가 되지 않습니다.");
+
+const leftTime = ref(0);
+const pad = (num: number): string => String(num).padStart(2, "0");
 let timerId: number | null = null;
 
-const pad = (num: number): string => String(num).padStart(2, "0");
+const calculateLeftTime = () => {
+  const nowTime = new Date();
+  const endTime = new Date(props.endDate);
+
+  const remainingTime = Math.floor((endTime.getTime() - nowTime.getTime()) / 1000);
+  leftTime.value = remainingTime > 0 ? remainingTime : 0;
+};
 
 onMounted(() => {
-  timerId = setInterval(() => {
-    if (leftTime.value === 0) return;
+  calculateLeftTime();
 
-    leftTime.value--;
+  timerId = setInterval(() => {
+    calculateLeftTime();
 
     if (leftTime.value === 0 && timerId !== null) {
       clearInterval(timerId);
@@ -32,7 +45,7 @@ onUnmounted(() => {
         <p class="font-bold text-3xl">{{ TIMER.TITLE }}</p>
       </div>
 
-      <p class="font-bold font-mono text-6xl text-[#007AFF]">
+      <p class="font-bold font-mono text-6xl text-[#007AFF] whitespace-nowrap">
         {{ pad(Math.floor(leftTime / 3600)) }} : {{ pad(Math.floor((leftTime % 3600) / 60)) }} :
         {{ pad(leftTime % 60) }}
       </p>
