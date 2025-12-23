@@ -1,10 +1,36 @@
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
 import CountDownTimer from "./components/CountDownTimer.vue";
 import EventHeaderInfo from "./components/EventHeaderInfo.vue";
 import EventRewardInfo from "./components/EventRewardInfo.vue";
 import CardDraw from "./components/CardDraw.vue";
 import ApplicationButton from "./components/ApplicationButton.vue";
 import BackGroundParallax from "./components/BackGroundParallax.vue";
+
+type EventData = {
+  title: string;
+  endDate: string;
+  description: string;
+  rewards: { id: number; name: string; image: string }[];
+};
+
+const event = ref<EventData | null>(null);
+
+onMounted(async () => {
+  try {
+    const response = await fetch("https://694a57351282f890d2d85e1d.mockapi.io/event", {
+      method: "GET",
+    });
+
+    if (!response.ok) throw new Error("응답이 실패했습니다.");
+
+    const data = await response.json();
+    event.value = data[0];
+  } catch (error) {
+    alert(error);
+    console.error({ message: error });
+  }
+});
 </script>
 
 <template>
@@ -17,7 +43,12 @@ import BackGroundParallax from "./components/BackGroundParallax.vue";
       enter-to-class="opacity-100"
     >
       <div>
-        <EventHeaderInfo />
+        <EventHeaderInfo
+          v-if="event"
+          :title="event.title"
+          :description="event.description"
+          :end-date="event.endDate"
+        />
       </div>
     </Transition>
   </header>
@@ -30,7 +61,7 @@ import BackGroundParallax from "./components/BackGroundParallax.vue";
       enter-to-class="opacity-100"
     >
       <div class="flex-1">
-        <EventRewardInfo />
+        <EventRewardInfo v-if="event" :rewards="event.rewards" />
       </div>
     </Transition>
 
@@ -53,7 +84,7 @@ import BackGroundParallax from "./components/BackGroundParallax.vue";
         enter-to-class="opacity-100"
       >
         <div>
-          <CountDownTimer />
+          <CountDownTimer v-if="event" :end-date="event.endDate" />
         </div>
       </Transition>
     </div>
