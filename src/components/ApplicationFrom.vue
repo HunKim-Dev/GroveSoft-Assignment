@@ -20,6 +20,11 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
 
 const errorMessage = ref("");
 const isLoading = ref(false);
+const hasApplied = ref(false);
+
+onMounted(() => {
+  hasApplied.value = localStorage.getItem("hasApplied") === "true";
+});
 
 const submitForm = async () => {
   const validateResult = applicationForm.safeParse({
@@ -46,6 +51,8 @@ const submitForm = async () => {
     });
 
     if (!response) throw new Error(API_MESSAGES.FAIL.POST);
+
+    localStorage.setItem("hasApplied", "true");
 
     alert(API_MESSAGES.SUCCESS.POST);
     closeModel("close");
@@ -132,10 +139,12 @@ const copyUrl = async () => {
         <div class="flex gap-3 pt-2">
           <button
             @click="submitForm"
-            class="flex-1 cursor-pointer rounded-md bg-[#007AFF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0066d6] active:scale-90"
+            :disabled="isLoading || hasApplied"
+            class="flex-1 cursor-pointer rounded-md px-4 py-2 text-sm font-semibold text-white transition active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed bg-[#007AFF] hover:bg-[#0066d6]"
           >
-            {{ isLoading ? APPLY.APPLYING : APPLY.BUTTON }}
+            {{ hasApplied ? APPLY.APPLIED : isLoading ? APPLY.APPLYING : APPLY.BUTTON }}
           </button>
+
           <button
             @click="copyUrl"
             class="flex-1 cursor-pointer rounded-md border border-gray bg-white px-4 py-2 text-sm font-semibold text-gray transition hover:bg-gray-100 active:scale-90"
