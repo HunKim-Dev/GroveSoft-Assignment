@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { APPLY } from "@/config/UIConstants";
 import { applicationForm } from "@/lib/validators/applicationForm";
 
@@ -20,7 +19,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
 
 const errorMessage = ref("");
 
-const submitForm = () => {
+const submitForm = async () => {
   const validateResult = applicationForm.safeParse({
     name: inputNameText.value,
     phone: inputPhoneNumberText.value,
@@ -33,6 +32,22 @@ const submitForm = () => {
 
     alert(errorMessage.value);
     return;
+  }
+
+  try {
+    const response = await fetch("https://694a57351282f890d2d85e1d.mockapi.io/entries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(validateResult.data),
+    });
+
+    if (!response) throw new Error("응모 요청이 실패했습니다.");
+
+    alert("응모가 완료되었습니다!");
+    closeModel("close");
+  } catch (error) {
+    alert("네트워크 오류가 발생했습니다.");
+    console.error({ message: error });
   }
 };
 </script>
