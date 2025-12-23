@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { onMounted, onUnmounted } from "vue";
 import { APPLY } from "@/config/UIConstants";
+import { applicationForm } from "@/lib/validators/applicationForm";
 
 const inputNameText = ref("");
 const inputPhoneNumberText = ref("");
@@ -16,6 +17,24 @@ const onKeydown = (event: KeyboardEvent) => {
 
 onMounted(() => window.addEventListener("keydown", onKeydown));
 onUnmounted(() => window.removeEventListener("keydown", onKeydown));
+
+const errorMessage = ref("");
+
+const submitForm = () => {
+  const validateResult = applicationForm.safeParse({
+    name: inputNameText.value,
+    phone: inputPhoneNumberText.value,
+    email: inputEmailText.value,
+    agreedTerms: agreeCheck.value,
+  });
+
+  if (!validateResult.success) {
+    errorMessage.value = validateResult.error.issues[0]?.message ?? "입력값을 확인해주세요.";
+
+    alert(errorMessage.value);
+    return;
+  }
+};
 </script>
 
 <template>
@@ -50,7 +69,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
           <input
             v-model.trim="inputPhoneNumberText"
             type="text"
-            placeholder="01012341234 (숫자만 입력해주세요.)"
+            placeholder="010-1234-1234"
             class="input-base"
           />
         </div>
@@ -79,6 +98,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
 
         <div class="flex gap-3 pt-2">
           <button
+            @click="submitForm"
             class="flex-1 cursor-pointer rounded-md bg-[#007AFF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0066d6] active:scale-90"
           >
             {{ APPLY.BUTTON }}
