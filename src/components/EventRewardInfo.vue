@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { EVENT_INFO } from "@/config/UIConstants";
+import { API_MESSAGES } from "@/config/apiMessages";
 
 const props = defineProps<{
   rewards: { id: number; name: string; image: string }[];
 }>();
 
-if (!props) alert("혜택항목이 조회가 되지 않습니다.");
+if (!props) alert(API_MESSAGES.FAIL.REWARD_INFO);
 </script>
 
 <template>

@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { API_MESSAGES } from "@/config/apiMessages";
+
 const props = defineProps<{
   title: string;
   endDate: string;
   description: string;
 }>();
 
-if (!props) alert("제목, 상세설명, 날짜가 조회되지 않습니다.");
+if (!props) alert(API_MESSAGES.FAIL.HEADER_INFO);
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString("ko-KR", {

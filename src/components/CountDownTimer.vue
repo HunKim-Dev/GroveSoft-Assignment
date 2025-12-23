@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { TIMER } from "@/config/UIConstants";
+import { API_MESSAGES } from "@/config/apiMessages";
 
 const props = defineProps<{
   endDate: string;
 }>();
 
-if (!props) alert("타이머가 조회가 되지 않습니다.");
+if (!props) alert(API_MESSAGES.FAIL.TIMER);
 
 const leftTime = ref(0);
 const pad = (num: number): string => String(num).padStart(2, "0");

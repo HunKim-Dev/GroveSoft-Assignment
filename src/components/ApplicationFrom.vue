@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { APPLY } from "@/config/UIConstants";
+import { API_MESSAGES } from "@/config/apiMessages";
 import { applicationForm } from "@/lib/validators/applicationForm";
 
 const inputNameText = ref("");
@@ -41,12 +42,12 @@ const submitForm = async () => {
       body: JSON.stringify(validateResult.data),
     });
 
-    if (!response) throw new Error("응모 요청이 실패했습니다.");
+    if (!response) throw new Error(API_MESSAGES.FAIL.POST);
 
-    alert("응모가 완료되었습니다!");
+    alert(API_MESSAGES.SUCCESS.POST);
     closeModel("close");
   } catch (error) {
-    alert("네트워크 오류가 발생했습니다.");
+    alert(API_MESSAGES.FAIL.SERVER);
     console.error({ message: error });
   }
 };

@@ -6,6 +6,7 @@ import EventRewardInfo from "./components/EventRewardInfo.vue";
 import CardDraw from "./components/CardDraw.vue";
 import ApplicationButton from "./components/ApplicationButton.vue";
 import BackGroundParallax from "./components/BackGroundParallax.vue";
+import { API_MESSAGES } from "./config/apiMessages";
 
 type EventData = {
   title: string;
@@ -22,7 +23,7 @@ onMounted(async () => {
       method: "GET",
     });
 
-    if (!response.ok) throw new Error("응답이 실패했습니다.");
+    if (!response.ok) throw new Error(API_MESSAGES.FAIL.GET);
 
     const data = await response.json();
     event.value = data[0];
