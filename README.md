@@ -4,20 +4,32 @@
 이벤트 혜택, 카드 인터랙션, 실시간 타이머, 응모 폼, 패럴랙스 배경을 통해  
 사용자 참여를 유도하는 단일 페이지 이벤트 UI입니다.
 
+| **구현 화면** |
+|:--:|
+| ![구현 화면](https://github.com/user-attachments/assets/409827ee-ce87-42c1-b324-6a232edd9bc8) | 
+
+
 ---
 
 <br>
 
+
 # Link
 
-[배포 주소]() |
+[배포 주소](https://grove-soft-assignment.vercel.app/) |
 [구현 과정](https://autumn-button-b3d.notion.site/2ce450fda1fa800fb15bd49de8364e33?source=copy_link) |
 [구현시 에러](https://autumn-button-b3d.notion.site/Vue-js-2cd450fda1fa8069a9f2f98f83158688?source=copy_link) |
 [구현시 개념 정리](https://autumn-button-b3d.notion.site/Vue-js-2cc450fda1fa80b6bb16eca8aebde2e0?source=copy_link)
 
+
 ---
 
-## 실행 방법
+
+<br>
+
+
+
+# 실행 방법
 
 ```bash
 # 패키지 설치
@@ -31,7 +43,32 @@ pnpm run dev
 
 <br>
 
-## 사용한 라이브러리 및 선택 이유
+# 사용 기술
+
+### 프론트
+![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=fff)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=fff)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=fff)
+
+### 검증
+![Zod](https://img.shields.io/badge/Zod-3E67B1?style=flat-square&logo=zod&logoColor=fff)
+
+### API
+![MockAPI](https://img.shields.io/badge/MockAPI.io-5C2D91?style=flat-square)
+
+### 배포
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=fff)
+
+### 도구
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=flat-square&logo=pnpm&logoColor=fff)
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=fff)
+![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=prettier&logoColor=000)
+
+---
+
+<br>
+
+# 사용한 라이브러리 선택 이유
 
 ### TypeScript
 - API 응답 데이터, props 타입을 명확하게 정의
@@ -52,7 +89,7 @@ pnpm run dev
 
 <br>
 
-## 구현 시 고민한 점 & 구현 과정
+# 구현 시 고민한 점 & 구현 과정
 
 ### 1. 이벤트 데이터 관리 방식
 초기에는 이벤트 정보와 혜택 항목을 상수로 관리했으나
@@ -71,7 +108,7 @@ pnpm run dev
 React에서는 map을 사용하지만
 Vue에서는 템플릿에서 v-for를 사용하는 방식으로 적용
 
-```vue
+```js
 <li v-for="reward in rewards" :key="reward.id">
   {{ reward.name }}
 </li>
@@ -84,7 +121,7 @@ Vue에서는 템플릿에서 v-for를 사용하는 방식으로 적용
 
 ### 3. 카드 인터랙션 설계
 
-```vue
+```js
 const CARDS = ref<Card[]>([
   { id: 1, front: "10%", drawn: false },
   { id: 2, front: "10%", drawn: false },
@@ -95,6 +132,10 @@ const CARDS = ref<Card[]>([
 ```
 
 카드 형태 및 속성은 배열안에 객체 형태로 잡고 카드 뒷면은 css로 표현
+
+| **카드 인터렉션** |
+|:--:|
+| ![카드 인터렉션](https://github.com/user-attachments/assets/8ef337b6-d9a1-4f38-bdfd-b746b306d570) | 
 
 
 <br>
@@ -107,6 +148,10 @@ const CARDS = ref<Card[]>([
 
 실제 서비스에서 사용하는 타이머 구현 패턴을 적용
 
+| **타이머** |
+|:--:|
+| ![타이머](https://github.com/user-attachments/assets/896d63dd-b653-48e0-96fd-8bdf066252e9) | 
+
 
 <br>
 
@@ -115,7 +160,7 @@ const CARDS = ref<Card[]>([
 ### 5. 스크롤 트리거 패럴랙스
 레이아웃이 스크롤이 별로 없어서 기능 구현을 인지하기 위해 스크롤시 배경화면 확대 기능 구현
 
-```vue
+```js
 const scale = 1 + y * 0.003;
 ```
 scale로 스크롤 하면 배경 확대 크기 조정
@@ -130,9 +175,13 @@ scale로 스크롤 하면 배경 확대 크기 조정
 - 에러 메시지 alert로 노출해 구현 및 console.error로 사용자와 개발자 모두에게 인식 가능하게 구현
 - 응모 완료 시 localStorage에 상태 저장
 
-```vue
+```js
 localStorage.setItem("hasApplied", "true");
 ```
+
+| **응모 폼** |
+|:--:|
+| ![응모 폼](https://github.com/user-attachments/assets/cd80a299-38da-471f-a1d7-cc3af87bedcb) | 
 
 
 <br>
