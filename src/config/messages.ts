@@ -11,3 +11,8 @@ export const API_MESSAGES = {
     SERVER: "네트워크 오류가 발생했습니다.",
   },
 };
+
+export const URL_COPY_MESSAGES = {
+  SUCCESS: "링크가 복사되었습니다!",
+  FAIL: "링크 복사에 실패했습니다.",
+};
